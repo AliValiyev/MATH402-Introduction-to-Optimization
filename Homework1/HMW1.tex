@@ -1,0 +1,310 @@
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{a4wide}
+\usepackage[colorlinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage[utf8]{inputenc}
+\usepackage{graphics}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\captionsetup{compatibility=false}
+\usepackage{listings}
+\newcommand{\set}[2]{\left\{{#1}\,:~{#2}\right\}}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{setspace}
+\usepackage{algorithmic}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},
+}
+
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0.4pt} % customise the layout...
+%\lhead{}\chead{}\rhead{}
+%\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%\rfoot{\footnotesize SIR 330}
+\rhead{ \large \textbf{Due: 23:59 November 18}}
+\lhead{ \large \textbf{MATH402 Homework I}}
+
+%%% SECTION TITLE APPEARANCE
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+
+%% END Article customise
+
+%%% BEGIN DOCUMENT
+
+
+\begin{document}
+
+%\thispagestyle{plain} %alternatively specify empty to get no footer on first page.  This is part of the fancyhdr package
+
+\noindent The instructor is aware of the possibilities that exist for obtaining homework solutions outside of one’s own abilities. Therefore, read the following rules carefully!
+\begin{itemize}
+    \setlength\itemsep{0.5em}
+    \item You can collaborate or work with anyone. However, the work submitted must be your understanding. If your works contain seems quite similarity,  you can \textbf{share the total points}.
+    \item If your work involves  significant help from reference books or papers, add a note in your paper to indicate this. The murkiness about "using online tutorials" is resolved below:
+    \begin{itemize}
+    \item Do not submit your homework problems to someone or some agency who will do the exam for you. These people do everyone except themselves a disservice. They harm you because you won’t learn and therefore won’t earn (neither money nor the joy of knowing something). They mock the education process. They benefit by collecting cash because you may not know something. Don’t let this be a pattern for your life. \textbf{A grade is a grade and over time will mean less and less, but knowledge acquired pays dividends for as long as you retain that knowledge.}
+    \end{itemize}
+    \item \textbf{The instructor reserves the right to ask the student to explain the answers for any or all problems on the homework.} If the student is unable to provide a satisfactory answer, then it will be assumed that the work was not done in an earnest manner and as such the problem in question will receive no credit.
+    \item Show all your work. Correct answers without sufficient explanation might \underline{\textbf{not}} get full credit.
+	\item The assignment consists of 7 questions for a total of 100 marks.
+	\item Submit your assignment \textbf{electronically} via \url{https://odtuclass.metu.edu.tr/}.
+	\item When you scan your hand-writing part, please make sure that one can easily read the homework when printed. Do not submit photos of handwriting homework.
+	\item The report of MATLAB part should be written via \textbf{\LaTeX}.
+	\item Please, do not forget send \textbf{.m files}, \textbf{.tex file} of MATLAB part.
+	\item Combine the hand-writing part and the report of MATLAB part in \textbf{a single pdf}.
+    \item Please, do not forget write your name and surname to your documents.
+	\item Together with your MATLAB \textbf{.m files}, make a compressed file such as ZIP (never
+		use RAR!), of all your work (including your	PDF report (.pdf and .tex files)). Upload only the compressed file having a name as  \textbf{your name, surname, and homework number}, for instance, \textbf{mkutuk\_hmw1}.
+	\item The report for a programming part should consist of
+	\begin{itemize}
+		\item Brief description of the problem;
+		\item Results such as data, graphs etc. Try to avoid attaching large set of data unless it is really necessary;
+		\item Discussion, comments, explanation and conclusion on your numerical observations. This part is equally important as your computer codes and the data you collect, and it helps with understanding concepts, algorithms, or other relevant issues not discussed during lectures.
+         \item Please, do not insert your MATLAB \textbf{.m files} into the report if not necessary.
+	\end{itemize}
+	\item Every .m file should be documented, such as:
+	\lstinputlisting{example.m}
+	\item \textbf{Late submission is not allowed!}
+\item \textbf{Please write the exact wording of the Pledge, following by your signature and date, in the beginning of your paper. Otherwise, your homework will not be evaluated.} \\
+
+\noindent "\emph{I confirm that I have read the instructions carefully and fully understood my responsibilities. I hereby declare that I have neither given nor received aid in this homework nor I have concealed any violation of the University Honor code.}"  \\
+\end{itemize}
+
+\newpage
+
+\begin{enumerate}
+
+%-------------------------------------------------------------------------------------------
+\item (\textit{$8$ pts.}) A company owns 800 hectares (ha) of land to build different types of houses based on the following estimates:
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \textbf{Type} & \textbf{Profit} & \textbf{Cost} & \textbf{Water Usage}  & \textbf{Required Area} \\
+            \hline
+             I  & 200 & 145 & 20 l per day  & 1   ha \\ \hline
+            II  & 240 & 165 & 27 l per day  & 1.5 ha \\  \hline
+            III & 300 & 215 & 32 l per day  & 2   ha  \\ \hline
+        \end{tabular}
+    \end{center}
+    In addition, the company has to obey the following rules:
+    \begin{itemize}
+        \item At least half of the houses have to be Type-I.
+        \item Water usage cannot exceed 8500 l per day.
+        \item Recreational areas require  15 \% of the total area.
+        \item For every 15 houses, there has to be at least one recreational areas, which requires 0.5 ha of area.  In addition, building cost and water usage per day are 125 and 25 l, respectively.
+    \end{itemize}
+    \textbf{Formulate} a linear programming model that will maximize the profit.
+
+%-------------------------------------------------------------------------------------------
+
+\item (\textit{$16$ pts.}) Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a differentiable function.
+    \begin{itemize}
+	   \item[a)] (\textit{$4$ pts.}) Prove that if the function $f$ is convex, then
+       \[
+           f(y) \geq f(x) + \nabla f(x)^T (y-x).
+       \]
+       Make a comment on the geometric meaning of the above result.
+	   \item[b)] (\textit{$4$ pts.})  Prove that $f \in \mathcal{C}^2(\mathbb{R}^n)$ is convex if the hessian of $f$ is positive semi--definite for all $x \in \mathbb{R}^n$.
+       \item[c)] (\textit{$4$ pts.})  Show that the set $C_{\alpha} = \{ x \in \mathbb{R}^n\, : \, f(x) \leq \alpha$ \} is convex.
+       \item[d)] (\textit{$4$ pts.})  Let the function $g(x)$ be given by
+       \[
+           g(x) = \big( c^T x + d \big) f \Big( \frac{Ax+b}{c^T x + d} \Big),
+       \]
+       where  $dom(g) = \{ x \in  \mathbb{R}^n  : \, c^T x + d >0, \;\; \frac{Ax+b}{c^T x + d} \in dom(f) \}$  and  $f$ is a convex function. Then, show that $g(x)$ is also convex.
+    \end{itemize}
+
+%-------------------------------------------------------------------------------------------
+
+\item  (\textit{$12$ pts.}) A quadratic function  $f(x)$  is defined as follows
+    \[
+     f(x) = c^Tx+\frac{1}{2}x^THx,
+     \]
+    where
+    \[
+        c = \begin{bmatrix}
+                1 \\ 1 \\ 1 \\ 1
+             \end{bmatrix}, \qquad
+        H = \begin{bmatrix}
+                4 & 4 & 4 & 3 \\
+                4 & 7 & 3 & 3 \\
+                4 & 3 & 5 & 3 \\
+                3 & 3 & 3 & 3
+             \end{bmatrix}.
+\]
+    \begin{itemize}
+        \item[a)] (\textit{$4$ pts.}) Determine whether a stationary point $x^*$ exists or not.
+        \item[b)] (\textit{$4$ pts.}) If exists, compute the stationary point $x^*$. Is $x^*$ a minimizer of $f$? Justify your answer!
+        \item[c)] (\textit{$4$ pts.}) If $x^*$ is a minimizer of $f(x)$, is $x^*$ unique? Explain!
+    \end{itemize}
+
+%-------------------------------------------------------------------------------------------
+
+
+\item (\textit{$14$ pts.})  Consider the following nonlinear system
+    \begin{subequations}\label{eqnonlinear}
+    \begin{eqnarray}
+        x^2 + y^2 -2 &=&0 , \\
+        x- y &=& 0.
+    \end{eqnarray}
+    \end{subequations}
+    \begin{itemize}
+	   \item[a)] (\textit{$2$ pts.})  Find the roots of the systems.
+	   \item[b)] (\textit{$3$ pts.})  Write one iteration of Newton's method with the initial guess $(x_{0},y_0)$ to find the zeros of the system.
+	   \item[c)] (\textit{$4$ pts.})  Let $(x_{0},y_0)$  be the initial guess of the Newton system. Show that the iteration converges to $(1,1)^T$ if $x_{0}+y_{0}$ is positive and converges to
+                                      $(-1,-1)^T$ if $x_{0}	+y_{0}$ is negative.
+	   \item[d)] (\textit{$5$ pts.})  Verify that  convergence of the Newton iteration obtained for the system  \eqref{eqnonlinear} exhibits quadratic convergence.
+    \end{itemize}
+
+%-------------------------------------------------------------------------------------------
+
+
+\item (\textit{$20$ pts.}) Consider the following objective function
+    \[
+        f(x_1,x_2) = \frac{x_1^2}{2} + x_1\cos x_2.
+     \]
+    \begin{itemize}
+        \item[a)] (\textit{$3$ pts.}) Find the gradient and Hessian of  $f$.
+        \item[b)] (\textit{$5$ pts.}) Find all minima of  $f$.
+        \item[c)] (\textit{$3$ pts.}) Confirm that the search direction ${\mathbf p}_0 = (-1,0)$ is a descent direction at ${\mathbf x}_0 = (0, \pi/4)$.
+        \item[d)] (\textit{$4$ pts.}) What are the admissible values for the step length  $\alpha_k$ for the Wolfe conditions, which are
+            \begin{eqnarray*}
+                f({\mathbf x} +\alpha_k {\mathbf p}_k ) & \le & f({\mathbf x}_k) + c_1 \alpha_k \nabla f({\mathbf x}_k)^T {\mathbf p}_k, \\
+                \nabla f({\mathbf x} + \alpha_k {\mathbf p}_k)^T{\mathbf p}_k & \ge & c_2 \nabla f({\mathbf x}_k)^T {\mathbf p}_k
+            \end{eqnarray*}
+            for which $c_1 = 0.1$ and $c_2=0.8$ are chosen?
+        \item[e)] (\textit{$5$ pts.}) Perform one step of the exact line search for the search direction ${\mathbf p}_0 = (-1,0)$  at ${\mathbf x}_0 = (0, \pi/4)$.
+    \end{itemize}
+
+%-------------------------------------------------------------------------------------------
+\item (\textit{$15$ pts.}) In this exercise, you will write a Matlab routine of Newton's method \texttt{newton.m} to find the  roots of a given function $f(x)$. Read the following  instructions:
+\begin{itemize}
+	\item Write the Newton method code of the form:
+		\begin{verbatim}
+			[x,hist, hist_err, iters] = Newton(f,x_0,tol,maxit); 	
+			Input:
+			f    : a user supplied function
+			x_0  : initial guess
+			tol  : a positive real number (the stopping tolerance)
+			maxit: a positive integer specifying the max number
+			of iterations allowed.	
+			Output:
+			x        : approximate solution to f(x) = 0
+			hist     : an array (a vector) of the values of x_k
+			hist_err : an array (a vector) of the error, i.e.,  x^* - x_k
+			iter     : the number of iterations taken
+		\end{verbatim}
+	\item Call the function \texttt{f} as \texttt{[f, df] = f(x)} which returns the values of the function $f$ as its derivative $\frac{d f}{d x}$.
+	\item Stopping criteria is applied as
+		\[
+		\rvert f(x_k) \lvert < tol,
+		\]
+		where $ tol$ is a user specified stopping tolerance and $ f(x_*) = 0 $.
+	\item Run your  code for different values of  \texttt{tol = tol\_1, tol\_2, tol\_3}, initial guess $ x_0 = 1.8 $, $maxit=1000$, and functions $f(x) = (x^2 +1)(x-1)$ and $g(x)=(x-1)^2$.
+		\item Display your results as the following:
+		\begin{verbatim}
+			Tol   | iteration    |    x value   | error
+			----- |--------- ----|------------------------
+			1e-3  |   iters_1    |     x_1      |  err_1
+			1e-6  |   iters_2    |     x_2      |  err_2
+			1e-9  |   iters_3    |     x_3      |  err_3
+		\end{verbatim}
+	\end{itemize}
+%-------------------------------------------------------------------------------------------
+
+\item (\textit{$15$ pts.}) In this exercise, you will write a Matlab routine to implement \textbf{Newton method with Armijo condition} in the form of
+		\begin{center}
+			\texttt{function [X,Grad,it] = \\ Newton\_armijo(fhandle,x0,tol,maxit,alpha0,c,mu,amax)}
+		\end{center}
+		taking the following input arguments:
+		\begin{itemize}
+			\item objective function \texttt{fhandle}, initial guess \texttt{x0}, tolerance value for the termination condition $ \lVert \nabla f(x_k)\rVert < \texttt{tol} $, maximum number of
+            iteration \texttt{maxit}, initial step--length \texttt{alpha0}, Armijo constant \texttt{c}, backtracking parameter \texttt{mu}, and maximum number of iterations \texttt{amax} for Armijo  iteration.
+		\end{itemize}
+		and return
+		\begin{itemize}
+			\item a matrix \texttt{ X = [x0; x1; x2; ...]} containing the whole iterations, a matrix \texttt{Grad} containing  $ \lVert \nabla f(x_k)\rVert  $, and the number of iterations
+            \texttt{ite}.
+		\end{itemize}
+        \begin{tcolorbox}[title={Newton Method with Armijo Condition}]
+		\begin{algorithmic}[lines]
+			\STATE \textbf{Input}: Given the objective function $f(x)$, initial guess $x_0$, tolerance number \texttt{tol}, maximum number of iteration \texttt{maxit}, Armijo constant $c$, backtracking constant $\mu$,  maximum number of iteration for Armijo \texttt{amax}, and initial guess for step--length $\alpha_0$.
+			\STATE Set $k:=0$.
+			\WHILE {$ \lVert \nabla f(x_k)\rVert \geq \texttt{tol} $ and $k \leq \texttt{maxit}$ }
+			\STATE Compute the search direction  $p_k = - \left[\nabla^2 f(x_k)\right]^{-1} \nabla f(x_k)$.
+			\STATE Compute $\alpha_k$ by using backtracking approach with Armijo condition:
+			\STATE Set $j:=0$.
+			\WHILE{$f(x_k + \alpha_j p_k) \geq f(x_k) + c \alpha_j \nabla f(x_k)^T p_k$ and $j \leq \texttt{amax}$}
+			\STATE $\alpha := \alpha*\mu$.
+			\STATE Set $j:=j+1$.
+			\ENDWHILE
+			\STATE Update the solution $x_{k+1} = x_k + \alpha_k p_k$.
+			\STATE Set $k:=k+1$.
+			\ENDWHILE
+		\end{algorithmic}
+        \end{tcolorbox}
+
+        \begin{itemize}
+           \item  Take the Rosenbrock banana function
+                    \[
+                     f(x) = 100(x_2-x_1^2)^2 + (1-x_1)^2
+                    \]
+                    as a benchmark function. Write a file \texttt{Rosenbrock.m} for the Rosenbrock banana function \texttt{[f,df,Hess] = f(x)}, which returns the values of the function $f$, gradient $\nabla f(x)$, and Hessian $\nabla^2 f(x)$, respectively.
+            \item Run your  code for different values of  $ \texttt{tol} = 10^{-3}, 10^{-6}, 10^{-9} $, initial guesses $ x_0=(-0.5,1)^T $ and $ x_0=(1.1,1.1)^T $, $\texttt{maxit}=10000$, $\texttt{alpha0}=1$,$\texttt{c}=1e-4 $, $\texttt{mu}=0.5 $, and $\texttt{amax}=100$.
+		    \item Display your results for each initial guesses as the following:
+\begin{verbatim}
+	Tol   | iteration    |    x value   | Norm_Gradient
+	----- |--------- ----|------------------------
+	1e-3  |   iters_1    |     x_1      |  grad_1
+	1e-6  |   iters_2    |     x_2      |  grad_2
+	1e-9  |   iters_3    |     x_3      |  grad_3
+\end{verbatim}
+        We note that the norm of gradient is given for the last step.
+		\item Plot the norm of the gradient for each tolerance in the same figure.
+        \item In this exercise, you need to write also a function
+		\begin{center}
+			\texttt{function [alpha] = armijo(fhandle, x, p, alpha0, c, mu, amax)}
+		\end{center}
+		that returns the step--length that satisfies Armijo condition. As input arguments, the function accepts
+		\begin{itemize}
+			\item a function handle \texttt{fhandle}, current iterate \texttt{x}, descent direction \texttt{p}, initial step--length \texttt{alpha0}, Armijo constant \texttt{c} backtracking
+            parameter \texttt{mu},   and maximum number of iterations \texttt{amax}.
+		\end{itemize}
+        \end{itemize}
+\end{enumerate}
+
+
+
+\end{document} 
